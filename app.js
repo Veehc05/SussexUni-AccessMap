@@ -34,6 +34,10 @@ async function loadRoutes() {
   });
 
   routesLayer.addTo(map);
+document.getElementById("poisToggle").addEventListener("change", (e) => {
+  if (!poiLayer) return;
+  e.target.checked ? poiLayer.addTo(map) : map.removeLayer(poiLayer);
+});
 
   // Zoom to route extent
   try {
