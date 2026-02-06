@@ -1,9 +1,7 @@
-// Sussex campus (roughly) — you can adjust after you draw your GeoJSON route
+// Sussex campus (roughly)
 const sussexCampusCenter = [50.8676, -0.0870];
 
-const map = L.map("map", {
-  zoomControl: true
-}).setView(sussexCampusCenter, 16);
+const map = L.map("map", { zoomControl: true }).setView(sussexCampusCenter, 16);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
@@ -11,6 +9,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 let routesLayer = null;
+let poiLayer = null;
 
 async function loadRoutes() {
   const res = await fetch("./data/routes.geojson");
@@ -31,37 +30,19 @@ async function loadRoutes() {
         ${notes}
       `);
     }
-  });
-
-  routesLayer.addTo(map);
-document.getElementById("poisToggle").addEventListener("change", (e) => {
-  if (!poiLayer) return;
-  e.target.checked ? poiLayer.addTo(map) : map.removeLayer(poiLayer);
-});
+  }).addTo(map);
 
   // Zoom to route extent
   try {
-    map.fitBounds(routesLayer.getBounds(), { padding: [20, 20] });
+    const b = routesLayer.getBounds();
+    if (b.isValid()) map.fitBounds(b, { padding: [20, 20] });
   } catch (_) {}
 }
-
-loadRoutes().catch(err => {
-  console.error(err);
-  alert("Could not load route data. Check console for details.");
-});
-
-document.getElementById("routesToggle").addEventListener("change", (e) => {
-  const show = e.target.checked;
-  if (!routesLayer) return;
-  if (show) routesLayer.addTo(map);
-  else map.removeLayer(routesLayer);
-});
-
-let poiLayer = null;
 
 async function loadPOIs() {
   const res = await fetch("./data/pois.geojson");
   if (!res.ok) throw new Error("Failed to load pois.geojson");
+
   const geojson = await res.json();
 
   poiLayer = L.geoJSON(geojson, {
@@ -81,4 +62,26 @@ async function loadPOIs() {
   }).addTo(map);
 }
 
-loadPOIs().catch(console.error);
+// Load data
+loadRoutes().catch(err => {
+  console.error(err);
+  alert("Could not load route data. Check console for details.");
+});
+
+loadPOIs().catch(err => {
+  console.error(err);
+  alert("Could not load POI data. Check console for details.");
+});
+
+// Layer toggles (make sure these IDs exist in index.html)
+document.getElementById("routesToggle")?.addEventListener("change", (e) => {
+  const show = e.target.checked;
+  if (!routesLayer) return;
+  show ? routesLayer.addTo(map) : map.removeLayer(routesLayer);
+});
+
+document.getElementById("poisToggle")?.addEventListener("change", (e) => {
+  const show = e.target.checked;
+  if (!poiLayer) return;
+  show ? poiLayer.addTo(map) : map.removeLayer(poiLayer);
+});
