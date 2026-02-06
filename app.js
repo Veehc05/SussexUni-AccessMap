@@ -51,11 +51,11 @@ async function loadPOIs() {
       const p = feature.properties || {};
       const name = p.name ?? "POI";
       const desc = p.description ?? "";
-      const type = p.type ?? "";
+      const poiType = p.poi_type ?? ""; // <-- use poi_type (recommended)
 
       layer.bindPopup(`
         <strong>${name}</strong><br/>
-        ${type ? `Type: ${type}<br/>` : ""}
+        ${poiType ? `Type: ${poiType}<br/>` : ""}
         ${desc}
       `);
     }
@@ -85,3 +85,31 @@ document.getElementById("poisToggle")?.addEventListener("change", (e) => {
   if (!poiLayer) return;
   show ? poiLayer.addTo(map) : map.removeLayer(poiLayer);
 });
+
+
+// -------------------------
+// Collapsible sidebar logic
+// -------------------------
+const sidebarToggleBtn = document.getElementById("sidebarToggle");
+
+function setSidebarCollapsed(collapsed) {
+  document.body.classList.toggle("sidebar-collapsed", collapsed);
+
+  if (sidebarToggleBtn) {
+    sidebarToggleBtn.textContent = collapsed ? "☰ Info" : "✕ Close";
+    sidebarToggleBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+  }
+
+  // Leaflet needs a resize nudge after layout changes
+  setTimeout(() => map.invalidateSize(), 50);
+}
+
+sidebarToggleBtn?.addEventListener("click", () => {
+  const collapsed = document.body.classList.contains("sidebar-collapsed");
+  setSidebarCollapsed(!collapsed);
+});
+
+// Optional: auto-collapse on smaller screens
+if (window.matchMedia?.("(max-width: 900px)").matches) {
+  setSidebarCollapsed(true);
+}
