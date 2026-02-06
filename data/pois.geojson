@@ -1,26 +1,8 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Falmer House Accessible Entrance",
-        "type": "accessible_entrance",
-        "description": "Step-free entrance on the south side.",
-        "wheelchair_accessible": true
-      },
-      "geometry": { "type": "Point", "coordinates": [-0.0870, 50.8676] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Library Square",
-        "type": "destination",
-        "description": "Open plaza outside the library.",
-        "wheelchair_accessible": true
-      },
-      "geometry": { "type": "Point", "coordinates": [-0.0865, 50.8680] }
-    }
-  ]
+  "type": "Feature",
+  "properties": { "name": "TEST POI" },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-0.0870, 50.8676]
+  }
 }
-
