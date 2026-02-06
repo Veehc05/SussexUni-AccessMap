@@ -36,6 +36,22 @@ html, body {
   overflow: auto;
 }
 
+.sidebar-toggle {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+body.sidebar-collapsed .layout {
+  grid-template-columns: 1fr;
+}
+
+body.sidebar-collapsed .sidebar {
+  display: none;
+}
+
 .toggle {
   display: flex;
   align-items: center;
