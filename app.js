@@ -52,8 +52,3 @@ document.getElementById("routesToggle").addEventListener("change", (e) => {
   if (show) routesLayer.addTo(map);
   else map.removeLayer(routesLayer);
 });
-
-L.marker([50.8676, -0.0870]).addTo(map)
-  .bindPopup("Test marker: if you see this, Leaflet is working.")
-  .openPopup();
-
