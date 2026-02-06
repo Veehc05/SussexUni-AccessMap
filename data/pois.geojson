@@ -1,8 +1,17 @@
 {
-  "type": "Feature",
-  "properties": { "name": "TEST POI" },
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-0.0870, 50.8676]
-  }
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "name": "Falmer House Accessible Entrance",
+      "type": "mainentrance",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          -0.08857134264317779,
+          50.864602129709795
+        ],
+        "type": "Point"
+      }
+    }
+  ]
 }
