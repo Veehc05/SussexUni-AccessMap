@@ -28,13 +28,23 @@
         <input id="poisToggle" type="checkbox" checked />
         Show POIs
       </label>
+
+      <button
+        id="sidebarToggle"
+        class="sidebar-toggle"
+        type="button"
+        aria-expanded="true"
+        aria-controls="sidebar"
+      >
+        ☰ Info
+      </button>
     </div>
   </header>
 
   <main class="layout">
     <section id="map"></section>
 
-    <aside class="sidebar">
+    <aside id="sidebar" class="sidebar">
       <h2>Demo route</h2>
       <p><strong>Falmer House → Library Square</strong></p>
       <p>Click the route on the map to see notes.</p>
