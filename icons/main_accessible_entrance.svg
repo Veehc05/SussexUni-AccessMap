@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Door frame -->
+  <rect x="16" y="10" width="32" height="44" rx="6" stroke="#ffffff" stroke-width="4"></rect>
+
+  <!-- Arrow -->
+  <path d="M26 24l12 8-12 8v-6h-8v-4h8z" fill="#ffffff"></path>
+</svg>
