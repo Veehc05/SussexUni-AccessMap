@@ -1,1 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sussex Accessible Routes (MVP)</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Sussex Accessible Routes</h1>
+    <label class="toggle">
+      <input id="routesToggle" type="checkbox" checked />
+      Show accessible route overlays
+    </label>
+  </header>
+
+  <main class="layout">
+    <section id="map"></section>
+
+    <aside class="sidebar">
+      <h2>Demo route</h2>
+      <p><strong>Falmer House → Library Square</strong></p>
+      <p>Click the route on the map to see notes.</p>
+
+      <hr />
+
+      <h3>Next steps</h3>
+      <ul>
+        <li>Add more routes and POIs (ramps, lifts, entrances).</li>
+        <li>Add filters (step-free only, avoid steep slopes).</li>
+        <li>Later: turn segments into a routable network.</li>
+      </ul>
+    </aside>
+  </main>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="./app.js"></script>
+</body>
+</html>
 
