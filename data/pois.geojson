@@ -2,15 +2,18 @@
   "type": "FeatureCollection",
   "features": [
     {
-      "name": "Falmer House Accessible Entrance",
-      "type": "mainentrance",
-      "properties": {},
+      "type": "Feature",
+      "properties": {
+        "name": "Falmer House Accessible Entrance",
+        "poi_type": "main_accessible_entrance",
+        "description": "Step-free access via ramp and automatic doors."
+      },
       "geometry": {
+        "type": "Point",
         "coordinates": [
           -0.08857134264317779,
           50.864602129709795
-        ],
-        "type": "Point"
+        ]
       }
     }
   ]
