@@ -52,3 +52,29 @@ document.getElementById("routesToggle").addEventListener("change", (e) => {
   if (show) routesLayer.addTo(map);
   else map.removeLayer(routesLayer);
 });
+
+let poiLayer = null;
+
+async function loadPOIs() {
+  const res = await fetch("./data/pois.geojson");
+  if (!res.ok) throw new Error("Failed to load pois.geojson");
+  const geojson = await res.json();
+
+  poiLayer = L.geoJSON(geojson, {
+    pointToLayer: (feature, latlng) => L.marker(latlng),
+    onEachFeature: (feature, layer) => {
+      const p = feature.properties || {};
+      const name = p.name ?? "POI";
+      const desc = p.description ?? "";
+      const type = p.type ?? "";
+
+      layer.bindPopup(`
+        <strong>${name}</strong><br/>
+        ${type ? `Type: ${type}<br/>` : ""}
+        ${desc}
+      `);
+    }
+  }).addTo(map);
+}
+
+loadPOIs().catch(console.error);
