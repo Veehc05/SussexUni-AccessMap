@@ -6,7 +6,7 @@
       "properties": {
         "name": "Falmer House Accessible Entrance",
         "poi_type": "main_accessible_entrance",
-        "description": "Step-free access via ramp and automatic doors."
+        "description": "Step-free access and automatic doors."
       },
       "geometry": {
         "type": "Point",
