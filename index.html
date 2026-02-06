@@ -13,13 +13,22 @@
   />
   <link rel="stylesheet" href="./styles.css" />
 </head>
+
 <body>
   <header class="topbar">
     <h1>Sussex Accessible Routes</h1>
-    <label class="toggle">
-      <input id="routesToggle" type="checkbox" checked />
-      Show accessible route overlays
-    </label>
+
+    <div class="toggles">
+      <label class="toggle">
+        <input id="routesToggle" type="checkbox" checked />
+        Show accessible route overlays
+      </label>
+
+      <label class="toggle">
+        <input id="poisToggle" type="checkbox" checked />
+        Show POIs
+      </label>
+    </div>
   </header>
 
   <main class="layout">
@@ -47,12 +56,5 @@
     crossorigin=""
   ></script>
   <script src="./app.js"></script>
-  
-<label class="toggle">
-  <input id="poisToggle" type="checkbox" checked />
-  Show POIs
-</label>
-
-  
 </body>
 </html>
