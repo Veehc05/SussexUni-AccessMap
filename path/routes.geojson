@@ -1,4 +1,32 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Falmer House → Library Square",
+        "step_free": true,
+        "notes": "Primary step-free outdoor route. Gradients near Library Square should be verified."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [ [
+            -0.08847556297422443,
+            50.86437740823763
+          ],
+          [
+            -0.08865832510667815,
+            50.86497408501711
+          ],
+          [
+            -0.08856686145173853,
+            50.86521089000004
+          ],
+          [
+            -0.08859455644912373,
+            50.86534413935621
+          ]]
+      }
+    }
+  ]
 }
