@@ -13,6 +13,13 @@ html, body {
   border-bottom: 1px solid #ddd;
 }
 
+/* NEW: groups the route + POI toggles neatly */
+.toggles {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
 .layout {
   height: calc(100% - 58px);
   display: grid;
