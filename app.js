@@ -46,7 +46,39 @@ async function loadPOIs() {
   const geojson = await res.json();
 
   poiLayer = L.geoJSON(geojson, {
-    pointToLayer: (feature, latlng) => L.marker(latlng),
+    const ICONS = {
+  lift: L.icon({
+    iconUrl: "./icons/lift.svg",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28]
+  }),
+  main_accessible_entrance: L.icon({
+    iconUrl: "./icons/main_accessible_entrance.svg",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28]
+  }),
+  specific_accessible_entrance: L.icon({
+    iconUrl: "./icons/specific_accessible_entrance.svg",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28]
+  })
+};
+
+const DEFAULT_ICON = L.icon({
+  iconUrl: "./icons/main_accessible_entrance.svg",
+  iconSize: [28, 28],
+  iconAnchor: [14, 28],
+  popupAnchor: [0, -28]
+});
+  pointToLayer: (feature, latlng) => {
+  const poiType = feature?.properties?.poi_type;
+  const icon = ICONS[poiType] || DEFAULT_ICON;
+  return L.marker(latlng, { icon });
+},
+
     onEachFeature: (feature, layer) => {
       const p = feature.properties || {};
       const name = p.name ?? "POI";
