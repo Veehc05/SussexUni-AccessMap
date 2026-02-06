@@ -5,12 +5,48 @@ const map = L.map("map", { zoomControl: true }).setView(sussexCampusCenter, 16);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
-  attribution: '&copy; OpenStreetMap contributors'
+  attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
 
 let routesLayer = null;
 let poiLayer = null;
 
+// -------------------------
+// Icons (define once)
+// -------------------------
+const ICONS = {
+  lift: L.icon({
+    iconUrl: "./icons/lift.svg",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28]
+  }),
+  main_accessible_entrance: L.icon({
+    iconUrl: "./icons/main_accessible_entrance.svg",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28]
+  }),
+  specific_accessible_entrance: L.icon({
+    iconUrl: "./icons/specific_accessible_entrance.svg",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28]
+  }),
+  main_entrance: L.icon({
+    iconUrl: "./icons/main_entrance.svg",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28]
+  })
+};
+
+// Fallback if a POI has an unknown poi_type
+const DEFAULT_ICON = ICONS.main_accessible_entrance;
+
+// -------------------------
+// Routes
+// -------------------------
 async function loadRoutes() {
   const res = await fetch("./data/routes.geojson");
   if (!res.ok) throw new Error("Failed to load routes.geojson");
@@ -39,6 +75,9 @@ async function loadRoutes() {
   } catch (_) {}
 }
 
+// -------------------------
+// POIs
+// -------------------------
 async function loadPOIs() {
   const res = await fetch("./data/pois.geojson");
   if (!res.ok) throw new Error("Failed to load pois.geojson");
@@ -46,44 +85,17 @@ async function loadPOIs() {
   const geojson = await res.json();
 
   poiLayer = L.geoJSON(geojson, {
-    const ICONS = {
-  lift: L.icon({
-    iconUrl: "./icons/lift.svg",
-    iconSize: [28, 28],
-    iconAnchor: [14, 28],
-    popupAnchor: [0, -28]
-  }),
-  main_accessible_entrance: L.icon({
-    iconUrl: "./icons/main_accessible_entrance.svg",
-    iconSize: [28, 28],
-    iconAnchor: [14, 28],
-    popupAnchor: [0, -28]
-  }),
-  specific_accessible_entrance: L.icon({
-    iconUrl: "./icons/specific_accessible_entrance.svg",
-    iconSize: [28, 28],
-    iconAnchor: [14, 28],
-    popupAnchor: [0, -28]
-  })
-};
-
-const DEFAULT_ICON = L.icon({
-  iconUrl: "./icons/main_accessible_entrance.svg",
-  iconSize: [28, 28],
-  iconAnchor: [14, 28],
-  popupAnchor: [0, -28]
-});
-  pointToLayer: (feature, latlng) => {
-  const poiType = feature?.properties?.poi_type;
-  const icon = ICONS[poiType] || DEFAULT_ICON;
-  return L.marker(latlng, { icon });
-},
+    pointToLayer: (feature, latlng) => {
+      const poiType = feature?.properties?.poi_type;
+      const icon = ICONS[poiType] || DEFAULT_ICON;
+      return L.marker(latlng, { icon });
+    },
 
     onEachFeature: (feature, layer) => {
       const p = feature.properties || {};
       const name = p.name ?? "POI";
       const desc = p.description ?? "";
-      const poiType = p.poi_type ?? ""; // <-- use poi_type (recommended)
+      const poiType = p.poi_type ?? "";
 
       layer.bindPopup(`
         <strong>${name}</strong><br/>
@@ -94,7 +106,9 @@ const DEFAULT_ICON = L.icon({
   }).addTo(map);
 }
 
+// -------------------------
 // Load data
+// -------------------------
 loadRoutes().catch(err => {
   console.error(err);
   alert("Could not load route data. Check console for details.");
@@ -105,7 +119,9 @@ loadPOIs().catch(err => {
   alert("Could not load POI data. Check console for details.");
 });
 
-// Layer toggles (make sure these IDs exist in index.html)
+// -------------------------
+// Layer toggles
+// -------------------------
 document.getElementById("routesToggle")?.addEventListener("change", (e) => {
   const show = e.target.checked;
   if (!routesLayer) return;
@@ -117,7 +133,6 @@ document.getElementById("poisToggle")?.addEventListener("change", (e) => {
   if (!poiLayer) return;
   show ? poiLayer.addTo(map) : map.removeLayer(poiLayer);
 });
-
 
 // -------------------------
 // Collapsible sidebar logic
