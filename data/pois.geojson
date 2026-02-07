@@ -15,6 +15,37 @@
           50.864602129709795
         ]
       }
-    }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Library Accessible Entrance",
+        "poi_type": "specific_accessible_entrance",
+        "description": "Step-free entrance to the Library."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08983510694011443,
+          50.86566313247471
+        ]
+      }
+    },
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Library Lift (inside)",
+    "poi_type": "lift",
+    "description": "Lift inside the library",
+    "building_id": "library",
+    "level": 0
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-0.09021802642939747, 50.86512421947211]
+  }
+}
+
+
   ]
 }
