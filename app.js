@@ -19,7 +19,6 @@ const map = L.map("map", {
 L.tileLayer(
   "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
   {
-  minZoom: 14,
   maxZoom: 16,
   attribution:  "&copy; OpenStreetMap contributors &copy; CARTO"
 }).addTo(map);
