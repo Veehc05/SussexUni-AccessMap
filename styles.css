@@ -75,3 +75,10 @@ body.sidebar-collapsed .sidebar {
   height: 22px;
   flex: 0 0 22px;
 }
+
+.filters {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
