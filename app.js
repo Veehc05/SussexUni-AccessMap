@@ -2,8 +2,8 @@
 
 // Narrower east–west, taller north–south
 const sussexBounds = L.latLngBounds(
-  [50.8608, -0.0925], // south-west (lat, lon)
-  [50.8750, -0.0810]  // north-east (lat, lon)
+  [50.86164486980462, -0.0890], // south-west
+  [50.87397140595036, -0.0870]  // north-east
 );
 
 
