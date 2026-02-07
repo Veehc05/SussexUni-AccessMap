@@ -10,6 +10,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 let routesLayer = null;
 let poiLayer = null;
+let poiData = null; // store loaded POIs so we can re-filter without refetching
 
 // -------------------------
 // Icons (define once)
@@ -33,7 +34,13 @@ const ICONS = {
     iconAnchor: [14, 28],
     popupAnchor: [0, -28]
   }),
-
+  // Optional icon/type if you’re using it:
+  main_entrance: L.icon({
+    iconUrl: "./icons/main_entrance.svg",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28]
+  })
 };
 
 // Fallback if a POI has an unknown poi_type
@@ -71,15 +78,46 @@ async function loadRoutes() {
 }
 
 // -------------------------
-// POIs
+// POIs (with filtering)
 // -------------------------
-async function loadPOIs() {
-  const res = await fetch("./data/pois.geojson");
-  if (!res.ok) throw new Error("Failed to load pois.geojson");
+function getActivePoiTypes() {
+  const active = new Set();
 
-  const geojson = await res.json();
+  // If filters aren't present in the HTML yet, default to "show all"
+  const hasAnyFilter =
+    document.getElementById("filterLift") ||
+    document.getElementById("filterMainAccEntrance") ||
+    document.getElementById("filterSpecificAccEntrance") ||
+    document.getElementById("filterMainEntrance");
 
-  poiLayer = L.geoJSON(geojson, {
+  if (!hasAnyFilter) {
+    return null; // special value meaning "no filtering"
+  }
+
+  if (document.getElementById("filterLift")?.checked) active.add("lift");
+  if (document.getElementById("filterMainAccEntrance")?.checked) active.add("main_accessible_entrance");
+  if (document.getElementById("filterSpecificAccEntrance")?.checked) active.add("specific_accessible_entrance");
+  if (document.getElementById("filterMainEntrance")?.checked) active.add("main_entrance");
+
+  return active;
+}
+
+function renderPOIs() {
+  if (!poiData) return;
+
+  // Remove existing layer if present
+  if (poiLayer) map.removeLayer(poiLayer);
+
+  const activeTypes = getActivePoiTypes();
+  const doFilter = activeTypes instanceof Set;
+
+  poiLayer = L.geoJSON(poiData, {
+    filter: (feature) => {
+      if (!doFilter) return true; // show all when filters not configured
+      const t = feature?.properties?.poi_type;
+      return activeTypes.has(t);
+    },
+
     pointToLayer: (feature, latlng) => {
       const poiType = feature?.properties?.poi_type;
       const icon = ICONS[poiType] || DEFAULT_ICON;
@@ -98,7 +136,21 @@ async function loadPOIs() {
         ${desc}
       `);
     }
-  }).addTo(map);
+  });
+
+  // Respect the main POI toggle
+  const showPois = document.getElementById("poisToggle")?.checked ?? true;
+  if (showPois) {
+    poiLayer.addTo(map);
+  }
+}
+
+async function loadPOIs() {
+  const res = await fetch("./data/pois.geojson");
+  if (!res.ok) throw new Error("Failed to load pois.geojson");
+
+  poiData = await res.json();
+  renderPOIs();
 }
 
 // -------------------------
@@ -123,10 +175,22 @@ document.getElementById("routesToggle")?.addEventListener("change", (e) => {
   show ? routesLayer.addTo(map) : map.removeLayer(routesLayer);
 });
 
+// Updated POI toggle so it plays nicely with re-rendering
 document.getElementById("poisToggle")?.addEventListener("change", (e) => {
   const show = e.target.checked;
-  if (!poiLayer) return;
-  show ? poiLayer.addTo(map) : map.removeLayer(poiLayer);
+
+  if (!show) {
+    if (poiLayer) map.removeLayer(poiLayer);
+    return;
+  }
+
+  // Re-render ensures filters are respected
+  renderPOIs();
+});
+
+// Filter checkbox listeners (safe even if the elements don't exist yet)
+["filterLift", "filterMainAccEntrance", "filterSpecificAccEntrance", "filterMainEntrance"].forEach((id) => {
+  document.getElementById(id)?.addEventListener("change", () => renderPOIs());
 });
 
 // -------------------------
