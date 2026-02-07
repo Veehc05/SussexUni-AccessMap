@@ -35,51 +35,56 @@
         ]
       }
     },
-{
-  "type": "Feature",
-  "properties": {
-    "name": "Library Lift (inside)",
-    "poi_type": "lift",
-    "description": "Lift inside the library",
-    "building_id": "library",
-    "level": 0
-  },
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-0.09021802642939747, 50.86512421947211]
-  }
-}
-
-{
-  "type": "Feature",
-  "properties": {
-    "name": "Pevensey 1 Entrance",
-    "poi_type": "main_accessible_entrance",
-    "description": "Pevensey 1 Entrance, accessed via automatic doors",
-    "building_id": "pev1",
-    "level": 2
-  },
-  "geometry": {
-    "type": "Point",
-    "coordinates": [ -0.08636437672132047, 50.86491346763529]
-  }
-}
-
-{
-  "type": "Feature",
-  "properties": {
-    "name": "Pevensey 2 Main Entrance",
-    "poi_type": "main_entrance",
-    "description": "Up flights of stairs",
-    "building_id": "pev2",
-    "level": 3
-  },
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-0.08588549106417531, 50.8653503068918]
-  }
-}
-
-
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Library Lift (inside)",
+        "poi_type": "lift",
+        "description": "Lift inside the library",
+        "building_id": "library",
+        "level": 0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09021802642939747,
+          50.86512421947211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pevensey 1 Entrance",
+        "poi_type": "main_accessible_entrance",
+        "description": "Pevensey 1 Entrance, accessed via automatic doors",
+        "building_id": "pev1",
+        "level": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08636437672132047,
+          50.86491346763529
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pevensey 2 Main Entrance",
+        "poi_type": "main_entrance",
+        "description": "Up flights of stairs",
+        "building_id": "pev2",
+        "level": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08588549106417531,
+          50.8653503068918
+        ]
+      }
+    }
   ]
 }
