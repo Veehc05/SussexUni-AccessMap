@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Door frame -->
+  <rect x="18" y="10" width="28" height="44" rx="4" stroke="#000" stroke-width="4"></rect>
+
+  <!-- Door panel -->
+  <rect x="22" y="14" width="20" height="36" rx="3" stroke="#000" stroke-width="3"></rect>
+
+  <!-- Handle -->
+  <circle cx="38" cy="32" r="2.5" fill="#000"></circle>
+</svg>
