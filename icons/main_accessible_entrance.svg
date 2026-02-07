@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <!-- Door frame -->
-  <rect x="16" y="10" width="32" height="44" rx="6" stroke="#ffffff" stroke-width="4"></rect>
+  <rect x="18" y="10" width="28" height="44" rx="6" stroke="#000" stroke-width="4"></rect>
 
-  <!-- Arrow -->
-  <path d="M26 24l12 8-12 8v-6h-8v-4h8z" fill="#ffffff"></path>
+  <!-- Arrow pointing into the door -->
+  <path d="M14 32h18" stroke="#000" stroke-width="4" stroke-linecap="round"></path>
+  <path d="M26 24l10 8-10 8" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
