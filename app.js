@@ -2,8 +2,8 @@
 
 // Narrower east–west, taller north–south
 const sussexBounds = L.latLngBounds(
-  [50.86164486980462, -0.0890], // south-west
-  [50.87397140595036, -0.0870]  // north-east
+  [50.8598, -0.0940], // south-west (includes Falmer station)
+  [50.8755, -0.0795]  // north-east (includes Stanmer Court)
 );
 
 
