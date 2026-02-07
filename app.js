@@ -14,9 +14,11 @@ const map = L.map("map", {
 }).setView(sussexCampusCenter, 16);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  minZoom: 14,
   maxZoom: 19,
   attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
+
 
 let routesLayer = null;
 let poiLayer = null;
