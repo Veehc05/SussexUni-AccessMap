@@ -17,9 +17,10 @@ const map = L.map("map", {
 }).setView(sussexCampusCenter, 16);
 
 L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
   {
-  maxZoom: 16,
+    minZoom: 14,
+    maxZoom: 20,
   attribution:  "&copy; OpenStreetMap contributors &copy; CARTO"
 }).addTo(map);
 
