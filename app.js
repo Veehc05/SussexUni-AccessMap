@@ -1,9 +1,11 @@
 // Sussex campus (roughly)
 
+// Narrower east–west, taller north–south
 const sussexBounds = L.latLngBounds(
-  [50.8615, -0.0985], // south-west corner
-  [50.8735, -0.0750]  // north-east corner
+  [50.8608, -0.0925], // south-west (lat, lon)
+  [50.8750, -0.0810]  // north-east (lat, lon)
 );
+
 
 const sussexCampusCenter = [50.8676, -0.0870];
 
