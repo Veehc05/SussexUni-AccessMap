@@ -12,12 +12,13 @@ const sussexCampusCenter = [50.8676, -0.0870];
 const map = L.map("map", {
   zoomControl: true,
   maxBounds: sussexBounds,
-  maxBoundsViscosity: 1.0
+  maxBoundsViscosity: 1.0, 
+  inertia: false
 }).setView(sussexCampusCenter, 16);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   minZoom: 14,
-  maxZoom: 19,
+  maxZoom: 16,
   attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
 
