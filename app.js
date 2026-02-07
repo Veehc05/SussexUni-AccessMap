@@ -33,12 +33,7 @@ const ICONS = {
     iconAnchor: [14, 28],
     popupAnchor: [0, -28]
   }),
-  main_entrance: L.icon({
-    iconUrl: "./icons/main_entrance.svg",
-    iconSize: [28, 28],
-    iconAnchor: [14, 28],
-    popupAnchor: [0, -28]
-  })
+
 };
 
 // Fallback if a POI has an unknown poi_type
