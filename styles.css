@@ -58,3 +58,20 @@ body.sidebar-collapsed .sidebar {
   gap: 8px;
   user-select: none;
 }
+.legend {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-icon {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+}
