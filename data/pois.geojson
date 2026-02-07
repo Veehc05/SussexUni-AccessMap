@@ -6,8 +6,8 @@
       "properties": {
         "name": "Falmer House Accessible Entrance",
         "poi_type": "main_accessible_entrance",
-        "description": "Step-free access and automatic doors."
-        "building_id": "falmer_house"
+        "description": "Step-free access and automatic doors.",
+        "building_id": "falmer_house",
         "level": 0
       },
       "geometry": {
@@ -23,8 +23,8 @@
       "properties": {
         "name": "Library Accessible Entrance",
         "poi_type": "specific_accessible_entrance",
-        "description": "Step-free entrance to the Library."
-        "building_id": "library"
+        "description": "Step-free entrance to the Library.",
+        "building_id": "library",
         "level": 0
       },
       "geometry": {
