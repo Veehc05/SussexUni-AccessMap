@@ -1,7 +1,17 @@
 // Sussex campus (roughly)
+
+const sussexBounds = L.latLngBounds(
+  [50.8615, -0.0985], // south-west corner
+  [50.8735, -0.0750]  // north-east corner
+);
+
 const sussexCampusCenter = [50.8676, -0.0870];
 
-const map = L.map("map", { zoomControl: true }).setView(sussexCampusCenter, 16);
+const map = L.map("map", {
+  zoomControl: true,
+  maxBounds: sussexBounds,
+  maxBoundsViscosity: 1.0
+}).setView(sussexCampusCenter, 16);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
