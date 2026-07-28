@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Sussex Accessible Routes (MVP)</title>
 
   <link
@@ -11,6 +12,7 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""
   />
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -26,7 +28,7 @@
 
       <label class="toggle">
         <input id="poisToggle" type="checkbox" checked />
-        Show POIs (Poins Of Interest)
+        Show POIs (Points of Interest)
       </label>
 
       <button
@@ -42,67 +44,135 @@
   </header>
 
   <main class="layout">
-    <section id="map"></section>
+    <section
+      id="map"
+      aria-label="Accessible campus route map"
+    ></section>
 
     <aside id="sidebar" class="sidebar">
-      <h2>Demo route</h2>
-      <p><strong>Falmer House → Library Square</strong></p>
-      <p>Click the route on the map to see notes.</p>
+      <section
+        class="route-planner"
+        aria-labelledby="routePlannerHeading"
+      >
+        <h2 id="routePlannerHeading">Plan a route</h2>
+
+        <label for="routeFrom">From</label>
+
+        <select id="routeFrom">
+          <option value="">Choose a starting point</option>
+        </select>
+
+        <label for="routeTo">To</label>
+
+        <select id="routeTo">
+          <option value="">Choose a destination</option>
+        </select>
+
+        <label class="toggle">
+          <input id="stepFreeOnly" type="checkbox" checked />
+          Step-free routes only
+        </label>
+
+        <button id="findRouteButton" type="button">
+          Find accessible route
+        </button>
+
+        <div
+          id="routeResult"
+          class="route-result"
+          role="status"
+          aria-live="polite"
+        ></div>
+      </section>
+
       <hr />
 
-<h3>Legend</h3>
-<div class="legend">
-  <div class="legend-item">
-    <img src="./icons/lift.svg" alt="" class="legend-icon" />
-    <span>Lift</span>
-  </div>
+      <h3>Legend</h3>
 
-  <div class="legend-item">
-    <img src="./icons/main_accessible_entrance.svg" alt="" class="legend-icon" />
-    <span>Main accessible entrance</span>
-  </div>
+      <div class="legend">
+        <div class="legend-item">
+          <img
+            src="./icons/lift.svg"
+            alt=""
+            class="legend-icon"
+          />
+          <span>Lift</span>
+        </div>
 
-  <div class="legend-item">
-    <img src="./icons/specific_accessible_entrance.svg" alt="" class="legend-icon" />
-    <span>Specific accessible entrance</span>
-  </div>
+        <div class="legend-item">
+          <img
+            src="./icons/main_accessible_entrance.svg"
+            alt=""
+            class="legend-icon"
+          />
+          <span>Main accessible entrance</span>
+        </div>
 
-  
-</div>
-      
+        <div class="legend-item">
+          <img
+            src="./icons/specific_accessible_entrance.svg"
+            alt=""
+            class="legend-icon"
+          />
+          <span>Specific accessible entrance</span>
+        </div>
+
+        <div class="legend-item">
+          <img
+            src="./icons/main_entrance.svg"
+            alt=""
+            class="legend-icon"
+          />
+          <span>Main entrance</span>
+        </div>
+      </div>
+
       <hr />
 
-<h3>POI filters</h3>
-<div class="filters">
-  <label class="toggle">
-    <input id="filterLift" type="checkbox" checked />
-    Lifts
-  </label>
+      <h3>POI filters</h3>
 
-  <label class="toggle">
-    <input id="filterMainAccEntrance" type="checkbox" checked />
-    Main accessible entrances
-  </label>
+      <div class="filters">
+        <label class="toggle">
+          <input id="filterLift" type="checkbox" checked />
+          Lifts
+        </label>
 
-  <label class="toggle">
-    <input id="filterSpecificAccEntrance" type="checkbox" checked />
-    Specific accessible entrances
-  </label>
+        <label class="toggle">
+          <input
+            id="filterMainAccEntrance"
+            type="checkbox"
+            checked
+          />
+          Main accessible entrances
+        </label>
 
-  <label class="toggle">
-    <input id="filterMainEntrance" type="checkbox" checked />
-    Main entrances
-  </label>
-</div>
+        <label class="toggle">
+          <input
+            id="filterSpecificAccEntrance"
+            type="checkbox"
+            checked
+          />
+          Specific accessible entrances
+        </label>
 
+        <label class="toggle">
+          <input
+            id="filterMainEntrance"
+            type="checkbox"
+            checked
+          />
+          Main entrances
+        </label>
+      </div>
 
       <hr />
 
       <h3>Next steps</h3>
+
       <ul>
-        <li>Add more routes and POIs (ramps, lifts, entrances).</li>
-        <li>Add filters (step-free only, avoid steep slopes).</li>
-        <li>Later: turn segments into a routable network.</li>
+        <li>Add more predefined routes and POIs.</li>
+        <li>Add route details such as gradient and surface.</li>
+        <li>Later, turn route segments into a routable network.</li>
       </ul>
     </aside>
   </main>
@@ -112,6 +182,7 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""
   ></script>
+
   <script src="./app.js"></script>
 </body>
 </html>
