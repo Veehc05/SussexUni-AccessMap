@@ -4,13 +4,18 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "falmer-house-to-library",
         "name": "Falmer House → Library Square",
+        "from_id": "falmer-house-accessible-entrance",
+        "to_id": "library-accessible-entrance",
+        "description": "Primary step-free outdoor route from Falmer House to the Library.",
         "step_free": true,
-        "notes": "Primary step-free outdoor route. Gradients near Library Square should be verified."
+        "notes": "Gradients near Library Square should be verified."
       },
       "geometry": {
         "type": "LineString",
-        "coordinates": [ [
+        "coordinates": [
+          [
             -0.08847556297422443,
             50.86437740823763
           ],
@@ -25,7 +30,8 @@
           [
             -0.08859455644912373,
             50.86534413935621
-          ]]
+          ]
+        ]
       }
     }
   ]
