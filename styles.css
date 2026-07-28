@@ -58,6 +58,7 @@ body.sidebar-collapsed .sidebar {
   gap: 8px;
   user-select: none;
 }
+
 .legend {
   display: grid;
   gap: 10px;
@@ -82,3 +83,48 @@ body.sidebar-collapsed .sidebar {
   margin-top: 8px;
 }
 
+/* ==========================
+   Route Planner
+   ========================== */
+
+.route-planner {
+  display: grid;
+  gap: 10px;
+}
+
+.route-planner label {
+  font-weight: 600;
+}
+
+.route-planner select,
+.route-planner button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.route-planner button {
+  cursor: pointer;
+  background: #fff;
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.route-planner button:hover,
+.route-planner button:focus-visible {
+  background: #f5f5f5;
+  border-color: #444;
+}
+
+.route-result {
+  min-height: 1.5em;
+  font-size: 0.95rem;
+}
+
+.route-result.error {
+  font-weight: 600;
+  color: #b00020;
+}
